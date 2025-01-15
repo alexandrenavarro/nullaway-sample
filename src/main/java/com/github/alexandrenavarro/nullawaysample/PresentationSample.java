@@ -10,8 +10,8 @@ public final class PresentationSample {
     public static void main(String[] args) {
 
         // Yoda condition
-        final List<String> jedis = List.of("Yoda", "Luke", null);
-        final String aJedi = jedis.get(new Random().nextInt(jedis.size() - 1));
+        final String[] jedis = {"Yoda", null};
+        final String aJedi = new Random().nextBoolean() ? jedis[0] : jedis[1];
         if (aJedi.equals("Yoda")) { // Bad practise
             System.out.println("You must set first your notNull variable in your condition");
         }
