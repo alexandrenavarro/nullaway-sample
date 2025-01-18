@@ -41,7 +41,7 @@ public final class PresentationSample {
                         .orElse(null))
                 .toList();
 
-        // Container empty on neutral Object when it is possible
+        // Use empty container or neutral element when it is possible
         List<Object> emptyList = Collections.emptyList();
         Map<Object, Object> emptyMap = Collections.emptyMap();
         Optional<Object> emptyOptional = Optional.empty();
@@ -53,10 +53,10 @@ public final class PresentationSample {
         // Return null if you can not create a valid Price
         Price nullablePrice = Price.ofNullable(null, null);
 
-        // Use static of method if less than 2 arguments
+        // Use static of method ot create an object if less than 2 arguments
         Price oneEuro = Price.of(BigDecimal.ONE, "EUR");
 
-        // Or use a StagedBuilder to always return a valid Person
+        // Or Use a StagedBuilder to always return a valid Immutable Person
         Person johnDoe = Person.builder()
                 .firstName("John")
                 .lastName("Doe")
