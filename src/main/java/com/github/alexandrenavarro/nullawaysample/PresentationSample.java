@@ -1,23 +1,19 @@
 package com.github.alexandrenavarro.nullawaysample;
 
+import io.vavr.control.Try;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
 public final class PresentationSample {
 
     public static void main(String[] args) {
-
-        // Yoda condition
-        final String[] jedis = {"Yoda", null};
-        final String aJedi = new Random().nextBoolean() ? jedis[0] : jedis[1];
-        if (aJedi.equals("Yoda")) { // Bad practise
-            System.out.println("You must set first your notNull variable in your condition");
-        }
-        if ("Yoda".equals(aJedi)) { // Good practise
-            System.out.println("Good, young padawan");
-        }
 
         // On nullable object
         final Person person = Person.builder()
@@ -27,7 +23,6 @@ public final class PresentationSample {
                         .id("aDriverLicenseId")
                         .build())
                 .build();
-
 
         final List<Person> personList = List.of(person);
 
@@ -46,10 +41,28 @@ public final class PresentationSample {
                         .orElse(null))
                 .toList();
 
-        // Container empty not null
-//        Collections.emptyList();
-//        Collections.emptyMap();
-//        Optional.empty();
+        // Container empty on neutral Object when it is possible
+        List<Object> emptyList = Collections.emptyList();
+        Map<Object, Object> emptyMap = Collections.emptyMap();
+        Optional<Object> emptyOptional = Optional.empty();
+        Integer validIntegerOrZero = Try.of(() -> Integer.parseInt("12"))
+                .getOrElse(0);
+
+        // Force to init correctly
+
+        // Return null if you can not create a valid Price
+        Price nullablePrice = Price.ofNullable(null, null);
+
+        // Use static of method if less than 2 arguments
+        Price oneEuro = Price.of(BigDecimal.ONE, "EUR");
+
+        // Or use a StagedBuilder to always return a valid Person
+        Person johnDoe = Person.builder()
+                .firstName("John")
+                .lastName("Doe")
+                .build();
 
     }
+
+
 }

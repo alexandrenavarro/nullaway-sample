@@ -43,15 +43,6 @@ public final class NullAwayDemo {
 //        final String textQuoted = StringUtils.quote(null);
 //        System.out.println(textQuoted.toString());
 
-        // Check if there is a compilation error a potential local nullable variable can be pass on an NunNullable field OK
-//        final boolean b = new Random().nextBoolean();
-//        final String a = (b) ? null : "";
-//        final String b1 = "";
-//        final Person person5 = Person.builder()
-//                .firstName(a)
-//                .lastName(b1)
-//                .build();
-//        System.out.println(person5.toString());
 
     }
 

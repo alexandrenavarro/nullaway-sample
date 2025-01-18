@@ -13,14 +13,16 @@
         <spring-boot-dependencies.version>3.4.1</spring-boot-dependencies.version>
         <jspecify.version>1.0.0</jspecify.version>
         <jilt.version>1.6.3</jilt.version>
-        <!-- plugin version -->
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-        <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
         <error_prone_core.version>2.36.0</error_prone_core.version>
         <nullaway.version>0.12.3</nullaway.version>
         <guava.version>33.4.0-jre</guava.version>
         <annotations.version>24.1.0</annotations.version>
+        <!-- plugin version -->
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
+
+        <vavr.version>0.10.4</vavr.version>
     </properties>
     <build>
         <plugins>
@@ -34,7 +36,9 @@
                     <compilerArgs>
                         <arg>-XDcompilePolicy=simple</arg>
                         <arg>--should-stop=ifError=FLOW</arg>
-                        <arg>-Xplugin:ErrorProne -Xep:NullAway:ERROR
+                        <arg>-Xplugin:ErrorProne
+                            -Xep:UnusedVariable:OFF
+                            -Xep:NullAway:ERROR
                             -XepOpt:NullAway:AnnotatedPackages=com.github.alexandrenavarro.nullawaysample,org.springframework
                             -XepOpt:NullAway:ExcludedClasses=com.github.alexandrenavarro.nullawaysample.PersonBuilder,com.github.alexandrenavarro.nullawaysample.RestPersonBuilder,com.github.alexandrenavarro.nullawaysample.PersonEntityBuilder,com.github.alexandrenavarro.nullawaysample.DriverLicenseBuilder,com.github.alexandrenavarro.nullawaysample.PersonEntity
                         </arg>
@@ -142,6 +146,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>${vavr.version}</version>
         </dependency>
     </dependencies>
 </project>
